@@ -10,6 +10,7 @@ import (
 	"sipware/message"
 )
 
+// config reader
 func readConfig(file string) tcpua.Config {
 	var config tcpua.Config
 

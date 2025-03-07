@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"io/ioutil"
 	"encoding/json"
-	"sipware/api"
-	"sipware/ua/tcp"
-	"sipware/message"
+	// "github.com/melkior/sipware-go"
+	"github.com/melkior/sipware-go/api"
+	"github.com/melkior/sipware-go/ua/tcp"
 )
 
 // config reader
@@ -36,7 +36,7 @@ func readConfig(file string) tcpua.Config {
 	return config
 }
 
-func exitHandler(ua sipware.Ua) {
+func exitHandler(ua api.Ua) {
 	<-ua.Exit()
 	println("Exit!")
 	ua.Done()
@@ -52,7 +52,7 @@ func main() {
 
 	config := readConfig(args[0])
 	fmt.Println("Ua config", config)
-	ua := tcpua.NewUa("Tcp ua")
+	ua := tcpua.New("Tcp ua")
 	ua.SetExitHandler()
 
 	go exitHandler(ua)
